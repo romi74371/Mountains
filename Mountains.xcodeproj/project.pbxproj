@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F303C5761C54C00200CE736E /* OSMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5751C54C00200CE736E /* OSMClient.swift */; };
+		F303C5781C54C03800CE736E /* OSMConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5771C54C03800CE736E /* OSMConvenience.swift */; };
+		F303C57A1C54C08000CE736E /* OSMConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5791C54C08000CE736E /* OSMConstant.swift */; };
+		F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57B1C5CAF5700CE736E /* Peak.swift */; };
+		F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */; };
 		F3C3A9F31C540C5C00FE7952 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F21C540C5C00FE7952 /* AppDelegate.swift */; };
-		F3C3A9F51C540C5C00FE7952 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F41C540C5C00FE7952 /* ViewController.swift */; };
+		F3C3A9F51C540C5C00FE7952 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */; };
 		F3C3A9F81C540C5C00FE7952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3C3A9F61C540C5C00FE7952 /* Main.storyboard */; };
 		F3C3A9FB1C540C5C00FE7952 /* Mountains.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F91C540C5C00FE7952 /* Mountains.xcdatamodeld */; };
 		F3C3A9FD1C540C5C00FE7952 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C3A9FC1C540C5C00FE7952 /* Assets.xcassets */; };
 		F3C3AA001C540C5C00FE7952 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3C3A9FE1C540C5C00FE7952 /* LaunchScreen.storyboard */; };
 		F3C3AA0B1C540C5C00FE7952 /* MountainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3AA0A1C540C5C00FE7952 /* MountainsTests.swift */; };
 		F3C3AA161C540C5C00FE7952 /* MountainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3AA151C540C5C00FE7952 /* MountainsUITests.swift */; };
+		F3C3AA271C54127000FE7952 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C3AA261C54127000FE7952 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F303C5751C54C00200CE736E /* OSMClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMClient.swift; sourceTree = "<group>"; };
+		F303C5771C54C03800CE736E /* OSMConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMConvenience.swift; sourceTree = "<group>"; };
+		F303C5791C54C08000CE736E /* OSMConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMConstant.swift; sourceTree = "<group>"; };
+		F303C57B1C5CAF5700CE736E /* Peak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peak.swift; sourceTree = "<group>"; };
+		F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		F3C3A9EF1C540C5C00FE7952 /* Mountains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mountains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C3A9F21C540C5C00FE7952 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3C3A9F41C540C5C00FE7952 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F3C3A9F71C540C5C00FE7952 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3C3A9FA1C540C5C00FE7952 /* Mountains.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mountains.xcdatamodel; sourceTree = "<group>"; };
 		F3C3A9FC1C540C5C00FE7952 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +60,7 @@
 		F3C3AA111C540C5C00FE7952 /* MountainsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MountainsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C3AA151C540C5C00FE7952 /* MountainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MountainsUITests.swift; sourceTree = "<group>"; };
 		F3C3AA171C540C5C00FE7952 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3C3AA261C54127000FE7952 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C3AA271C54127000FE7952 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +89,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F303C5741C54BFDC00CE736E /* OSM */ = {
+			isa = PBXGroup;
+			children = (
+				F303C5751C54C00200CE736E /* OSMClient.swift */,
+				F303C5771C54C03800CE736E /* OSMConvenience.swift */,
+				F303C5791C54C08000CE736E /* OSMConstant.swift */,
+			);
+			name = OSM;
+			sourceTree = "<group>";
+		};
 		F3C3A9E61C540C5B00FE7952 = {
 			isa = PBXGroup;
 			children = (
+				F3C3AA261C54127000FE7952 /* MapKit.framework */,
 				F3C3A9F11C540C5C00FE7952 /* Mountains */,
 				F3C3AA091C540C5C00FE7952 /* MountainsTests */,
 				F3C3AA141C540C5C00FE7952 /* MountainsUITests */,
@@ -99,8 +123,11 @@
 		F3C3A9F11C540C5C00FE7952 /* Mountains */ = {
 			isa = PBXGroup;
 			children = (
+				F3C3AA231C540F2200FE7952 /* Model */,
+				F3C3AA241C540F2900FE7952 /* View */,
+				F3C3AA251C540F3400FE7952 /* Controller */,
 				F3C3A9F21C540C5C00FE7952 /* AppDelegate.swift */,
-				F3C3A9F41C540C5C00FE7952 /* ViewController.swift */,
+				F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */,
 				F3C3A9F61C540C5C00FE7952 /* Main.storyboard */,
 				F3C3A9FC1C540C5C00FE7952 /* Assets.xcassets */,
 				F3C3A9FE1C540C5C00FE7952 /* LaunchScreen.storyboard */,
@@ -126,6 +153,30 @@
 				F3C3AA171C540C5C00FE7952 /* Info.plist */,
 			);
 			path = MountainsUITests;
+			sourceTree = "<group>";
+		};
+		F3C3AA231C540F2200FE7952 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F303C5741C54BFDC00CE736E /* OSM */,
+				F303C57B1C5CAF5700CE736E /* Peak.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F3C3AA241C540F2900FE7952 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F3C3AA251C540F3400FE7952 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,9 +310,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F303C5761C54C00200CE736E /* OSMClient.swift in Sources */,
+				F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */,
 				F3C3A9FB1C540C5C00FE7952 /* Mountains.xcdatamodeld in Sources */,
-				F3C3A9F51C540C5C00FE7952 /* ViewController.swift in Sources */,
+				F303C5781C54C03800CE736E /* OSMConvenience.swift in Sources */,
+				F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */,
+				F3C3A9F51C540C5C00FE7952 /* MapViewController.swift in Sources */,
 				F3C3A9F31C540C5C00FE7952 /* AppDelegate.swift in Sources */,
+				F303C57A1C54C08000CE736E /* OSMConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +542,7 @@
 				F3C3AA1C1C540C5C00FE7952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3C3AA1D1C540C5C00FE7952 /* Build configuration list for PBXNativeTarget "MountainsTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +551,7 @@
 				F3C3AA1F1C540C5C00FE7952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3C3AA201C540C5C00FE7952 /* Build configuration list for PBXNativeTarget "MountainsUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +560,7 @@
 				F3C3AA221C540C5C00FE7952 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

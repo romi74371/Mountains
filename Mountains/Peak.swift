@@ -28,6 +28,7 @@ class Peak : NSManagedObject, MKAnnotation {
     @NSManaged var elevation: NSNumber
     
     var title: String?
+    var subtitle: String?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -41,9 +42,10 @@ class Peak : NSManagedObject, MKAnnotation {
         latitude = dictionary[Keys.Latitude] as! Double
         longitude = dictionary[Keys.Longitude] as! Double
         name = dictionary[Keys.Tags]![Keys.Name] as! String
-        //elevation = dictionary[Keys.Tags]![Keys.Elevation] as! NSNumber
+        elevation = Int(dictionary[Keys.Tags]![Keys.Elevation] as! String)!
         
         self.title = name
+        self.subtitle = dictionary[Keys.Tags]![Keys.Elevation] as? String
     }
     
     lazy var sharedContext: NSManagedObjectContext! = {

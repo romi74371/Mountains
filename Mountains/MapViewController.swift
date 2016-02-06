@@ -8,9 +8,10 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
     
     // Map region keys for NSUserDefaults
     let MapSavedRegionExists = "map.savedRegionExists"
@@ -18,26 +19,42 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     let MapCenterLongitudeKey = "map.center.longitude"
     let MapSpanLatitudeDeltaKey = "map.span.latitudeDelta"
     let MapSpanLongitudeDeltaKey = "map.span.longitudeDelta"
+    
+    var locationManager: CLLocationManager!
 
     @IBOutlet var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
+        self.mapView.delegate = self
+        //self.mapView.showsUserLocation = true
+        self.mapView.mapType = MKMapType(rawValue: 0)!
+        self.mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        
         do {
             try fetchedPeakResultsController.performFetch()
         } catch {}
         
-        self.mapView.delegate = self
         fetchedPeakResultsController.delegate = self
         
         // Load previous map state
         loadPersistedMapViewRegion()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         OSMClient.sharedInstance().getPeaks() { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
-                
+        
                 self.mapView.addAnnotations(peaks!)
             } else {
                 print("Finding peaks error!")
@@ -101,17 +118,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.draggable = true
-            pinView!.pinTintColor = MKPinAnnotationView.greenPinColor()
-            pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            //pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            //pinView!.canShowCallout = true
+            //pinView!.draggable = true
+            //pinView!.pinTintColor = MKPinAnnotationView.greenPinColor()
+            //pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {
             pinView!.annotation = annotation
         }
         
         return pinView
+    }
+    
+    // MARK: CLLocationManagerDelegate
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        //mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        mapView.showsUserLocation = (status == .AuthorizedAlways)
     }
     
     // MARK: NSUserDefaults

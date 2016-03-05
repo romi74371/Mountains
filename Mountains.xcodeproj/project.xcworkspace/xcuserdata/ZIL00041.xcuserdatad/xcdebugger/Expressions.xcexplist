@@ -3,7 +3,10 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
+         contextName = "OSMClient.(taskForGETMethod(OSMClient) -&gt; (String, parameters : [String : AnyObject], completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; NSURLSessionDataTask).(closure #1):OSMClient.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TestAnnotationView.bindUi() -&gt; ():TestAnnotationView.swift">
       </ContextState>
       <ContextState
          contextName = "Peak.init(dictionary : [String : AnyObject], context : NSManagedObjectContext) -&gt; Peak:Peak.swift">
@@ -14,7 +17,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "OSMClient.(taskForGETMethod(OSMClient) -&gt; (String, parameters : [String : AnyObject], completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; NSURLSessionDataTask).(closure #1):OSMClient.swift">
+         contextName = "MountainsARViewController.viewWillAppear(Bool) -&gt; ():MountainsARViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.peaks">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

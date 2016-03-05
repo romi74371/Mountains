@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,20 @@
 		F303C57A1C54C08000CE736E /* OSMConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5791C54C08000CE736E /* OSMConstant.swift */; };
 		F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57B1C5CAF5700CE736E /* Peak.swift */; };
 		F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */; };
+		F303C5811C67713E00CE736E /* MountainsARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5801C67713E00CE736E /* MountainsARViewController.swift */; };
+		F38F116A1C73C335000DA415 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F11691C73C335000DA415 /* CoreLocation.framework */; };
+		F38F116C1C73C33E000DA415 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F116B1C73C33E000DA415 /* CoreMotion.framework */; };
+		F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F116F1C73C37E000DA415 /* ARAnnotation.swift */; };
+		F38F117C1C73C37E000DA415 /* ARAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11701C73C37E000DA415 /* ARAnnotationView.swift */; };
+		F38F117D1C73C37E000DA415 /* ARConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11711C73C37E000DA415 /* ARConfiguration.swift */; };
+		F38F117E1C73C37E000DA415 /* ARTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11721C73C37E000DA415 /* ARTrackingManager.swift */; };
+		F38F117F1C73C37E000DA415 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11731C73C37E000DA415 /* ARViewController.swift */; };
+		F38F11801C73C37E000DA415 /* DebugMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11751C73C37E000DA415 /* DebugMapViewController.swift */; };
+		F38F11811C73C37E000DA415 /* DebugMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F38F11771C73C37E000DA415 /* DebugMapViewController.xib */; };
+		F38F11821C73C37E000DA415 /* hdar_close.png in Resources */ = {isa = PBXBuildFile; fileRef = F38F11781C73C37E000DA415 /* hdar_close.png */; };
+		F38F11831C73C37E000DA415 /* hdar_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F38F11791C73C37E000DA415 /* hdar_close@2x.png */; };
+		F38F11841C73C37E000DA415 /* hdar_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F38F117A1C73C37E000DA415 /* hdar_close@3x.png */; };
+		F38F11861C7453D0000DA415 /* MountainsAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F11851C7453D0000DA415 /* MountainsAnnotationView.swift */; };
 		F3C3A9F31C540C5C00FE7952 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F21C540C5C00FE7952 /* AppDelegate.swift */; };
 		F3C3A9F51C540C5C00FE7952 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */; };
 		F3C3A9F81C540C5C00FE7952 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3C3A9F61C540C5C00FE7952 /* Main.storyboard */; };
@@ -46,6 +60,20 @@
 		F303C5791C54C08000CE736E /* OSMConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSMConstant.swift; sourceTree = "<group>"; };
 		F303C57B1C5CAF5700CE736E /* Peak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peak.swift; sourceTree = "<group>"; };
 		F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		F303C5801C67713E00CE736E /* MountainsARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainsARViewController.swift; sourceTree = "<group>"; };
+		F38F11691C73C335000DA415 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F38F116B1C73C33E000DA415 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F38F116F1C73C37E000DA415 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
+		F38F11701C73C37E000DA415 /* ARAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotationView.swift; sourceTree = "<group>"; };
+		F38F11711C73C37E000DA415 /* ARConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARConfiguration.swift; sourceTree = "<group>"; };
+		F38F11721C73C37E000DA415 /* ARTrackingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARTrackingManager.swift; sourceTree = "<group>"; };
+		F38F11731C73C37E000DA415 /* ARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		F38F11751C73C37E000DA415 /* DebugMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugMapViewController.swift; sourceTree = "<group>"; };
+		F38F11771C73C37E000DA415 /* DebugMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DebugMapViewController.xib; sourceTree = "<group>"; };
+		F38F11781C73C37E000DA415 /* hdar_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hdar_close.png; sourceTree = "<group>"; };
+		F38F11791C73C37E000DA415 /* hdar_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@2x.png"; sourceTree = "<group>"; };
+		F38F117A1C73C37E000DA415 /* hdar_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hdar_close@3x.png"; sourceTree = "<group>"; };
+		F38F11851C7453D0000DA415 /* MountainsAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainsAnnotationView.swift; sourceTree = "<group>"; };
 		F3C3A9EF1C540C5C00FE7952 /* Mountains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mountains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C3A9F21C540C5C00FE7952 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38F116C1C73C33E000DA415 /* CoreMotion.framework in Frameworks */,
+				F38F116A1C73C335000DA415 /* CoreLocation.framework in Frameworks */,
 				F3C3AA271C54127000FE7952 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,9 +129,53 @@
 			name = OSM;
 			sourceTree = "<group>";
 		};
+		F38F116D1C73C37E000DA415 /* HDAugmentedReality */ = {
+			isa = PBXGroup;
+			children = (
+				F38F116E1C73C37E000DA415 /* Classes */,
+				F38F11761C73C37E000DA415 /* Resources */,
+			);
+			path = HDAugmentedReality;
+			sourceTree = "<group>";
+		};
+		F38F116E1C73C37E000DA415 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F38F116F1C73C37E000DA415 /* ARAnnotation.swift */,
+				F38F11701C73C37E000DA415 /* ARAnnotationView.swift */,
+				F38F11711C73C37E000DA415 /* ARConfiguration.swift */,
+				F38F11721C73C37E000DA415 /* ARTrackingManager.swift */,
+				F38F11731C73C37E000DA415 /* ARViewController.swift */,
+				F38F11741C73C37E000DA415 /* Debug */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F38F11741C73C37E000DA415 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				F38F11751C73C37E000DA415 /* DebugMapViewController.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		F38F11761C73C37E000DA415 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F38F11771C73C37E000DA415 /* DebugMapViewController.xib */,
+				F38F11781C73C37E000DA415 /* hdar_close.png */,
+				F38F11791C73C37E000DA415 /* hdar_close@2x.png */,
+				F38F117A1C73C37E000DA415 /* hdar_close@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F3C3A9E61C540C5B00FE7952 = {
 			isa = PBXGroup;
 			children = (
+				F38F116D1C73C37E000DA415 /* HDAugmentedReality */,
+				F38F116B1C73C33E000DA415 /* CoreMotion.framework */,
+				F38F11691C73C335000DA415 /* CoreLocation.framework */,
 				F3C3AA261C54127000FE7952 /* MapKit.framework */,
 				F3C3A9F11C540C5C00FE7952 /* Mountains */,
 				F3C3AA091C540C5C00FE7952 /* MountainsTests */,
@@ -167,6 +241,7 @@
 		F3C3AA241C540F2900FE7952 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F38F11851C7453D0000DA415 /* MountainsAnnotationView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -175,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */,
+				F303C5801C67713E00CE736E /* MountainsARViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,6 +323,7 @@
 				TargetAttributes = {
 					F3C3A9EE1C540C5C00FE7952 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = XV7PMK6D5L;
 					};
 					F3C3AA051C540C5C00FE7952 = {
 						CreatedOnToolsVersion = 7.1;
@@ -259,7 +336,7 @@
 				};
 			};
 			buildConfigurationList = F3C3A9EA1C540C5C00FE7952 /* Build configuration list for PBXProject "Mountains" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -284,8 +361,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3C3AA001C540C5C00FE7952 /* LaunchScreen.storyboard in Resources */,
+				F38F11821C73C37E000DA415 /* hdar_close.png in Resources */,
+				F38F11841C73C37E000DA415 /* hdar_close@3x.png in Resources */,
 				F3C3A9FD1C540C5C00FE7952 /* Assets.xcassets in Resources */,
 				F3C3A9F81C540C5C00FE7952 /* Main.storyboard in Resources */,
+				F38F11831C73C37E000DA415 /* hdar_close@2x.png in Resources */,
+				F38F11811C73C37E000DA415 /* DebugMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,12 +393,20 @@
 			files = (
 				F303C5761C54C00200CE736E /* OSMClient.swift in Sources */,
 				F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */,
+				F38F117C1C73C37E000DA415 /* ARAnnotationView.swift in Sources */,
 				F3C3A9FB1C540C5C00FE7952 /* Mountains.xcdatamodeld in Sources */,
+				F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */,
+				F303C5811C67713E00CE736E /* MountainsARViewController.swift in Sources */,
 				F303C5781C54C03800CE736E /* OSMConvenience.swift in Sources */,
+				F38F117F1C73C37E000DA415 /* ARViewController.swift in Sources */,
+				F38F117D1C73C37E000DA415 /* ARConfiguration.swift in Sources */,
+				F38F11861C7453D0000DA415 /* MountainsAnnotationView.swift in Sources */,
 				F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */,
 				F3C3A9F51C540C5C00FE7952 /* MapViewController.swift in Sources */,
 				F3C3A9F31C540C5C00FE7952 /* AppDelegate.swift in Sources */,
 				F303C57A1C54C08000CE736E /* OSMConstant.swift in Sources */,
+				F38F11801C73C37E000DA415 /* DebugMapViewController.swift in Sources */,
+				F38F117E1C73C37E000DA415 /* ARTrackingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,10 +546,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Mountains/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.romi74371.Mountains;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,10 +562,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Mountains/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.romi74371.Mountains;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

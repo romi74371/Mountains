@@ -22,7 +22,7 @@ extension OSMClient {
     func getPeaks(completionHandler: (success: Bool, peaks: [Peak]?, errorString: String?) -> Void) {
         
         let methodArguments = [
-            "data": "[out:json];node(49.17,19,49.24,19.1)[natural=peak];out;"
+            "data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
         ]
         
         taskForGETMethod("", parameters: methodArguments) { data, error in

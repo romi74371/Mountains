@@ -11,7 +11,9 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, ARDataSource {
+    
+    var peaks: [Peak] = []
     
     // Map region keys for NSUserDefaults
     let MapSavedRegionExists = "map.savedRegionExists"
@@ -24,6 +26,32 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
 
     @IBOutlet var mapView: MKMapView!
     
+    @IBAction func itemTouchUp(sender: AnyObject) {
+//        let result = ARViewController.createCaptureSession()
+//        if result.error != nil
+//        {
+//            let message = result.error?.userInfo["description"] as? String
+//            let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
+//            alertView.show()
+//            return
+//        }
+//
+//        let arViewController = ARViewController()
+//        arViewController.debugEnabled = true
+//        arViewController.dataSource = self
+//        arViewController.maxDistance = 0
+//        arViewController.maxVisibleAnnotations = 100
+//        arViewController.maxVerticalLevel = 5
+//        arViewController.trackingManager.userDistanceFilter = 25
+//        arViewController.trackingManager.reloadDistanceFilter = 75
+//        arViewController.setAnnotations(getAnnotations(self.peaks))
+//        self.presentViewController(arViewController, animated: true, completion: nil)
+        
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MountainsARViewController") as! MountainsARViewController
+        controller.peaks = self.peaks
+        self.navigationController!.pushViewController(controller, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +62,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         self.locationManager.startUpdatingLocation()
         
         self.mapView.delegate = self
-        //self.mapView.showsUserLocation = true
+        self.mapView.showsUserLocation = true
         self.mapView.mapType = MKMapType(rawValue: 0)!
         self.mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
@@ -54,7 +82,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         OSMClient.sharedInstance().getPeaks() { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
-        
+                self.peaks = peaks!
                 self.mapView.addAnnotations(peaks!)
             } else {
                 print("Finding peaks error!")
@@ -174,6 +202,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         }
         
     }
-
+    
+    // MARK: ARDataSource
+    
+    // This method is called by ARViewController, make sure to set dataSource property.
+    func ar(arViewController: ARViewController, viewForAnnotation: ARAnnotation) -> ARAnnotationView
+    {
+        // Annotation views should be lightweight views, try to avoid xibs and autolayout all together.
+        let annotationView = MountainsAnnotationView()
+        annotationView.frame = CGRect(x: 0,y: 0,width: 150,height: 50)
+        return annotationView;
+    }
+    
+    private func getAnnotations(peaks: [Peak]) -> Array<ARAnnotation>
+    {
+        var annotations: [ARAnnotation] = []
+        
+        for item in peaks {
+            let annotation = ARAnnotation()
+            annotation.location = CLLocation(latitude: item.latitude, longitude: item.longitude)
+            annotation.title = item.title
+            annotations.append(annotation)
+        }
+        
+        return annotations
+    }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreLocation
 
 extension OSMClient {
     
@@ -19,10 +20,12 @@ extension OSMClient {
     
     // MARK: - GET Convenience Methods
     
-    func getPeaks(completionHandler: (success: Bool, peaks: [Peak]?, errorString: String?) -> Void) {
+    func getPeaks(location: CLLocation, completionHandler: (success: Bool, peaks: [Peak]?, errorString: String?) -> Void) {
         
+        // arguments for OSM client to download peaks in particular area
         let methodArguments = [
-            "data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
+            //"data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
+            "data": "[out:json];node(\(location.coordinate.latitude-OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude-OSMClient.Constants.LOCATION_HALF_HEIGHT),\(location.coordinate.latitude+OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude+OSMClient.Constants.LOCATION_HALF_HEIGHT))[natural=peak];out;"
         ]
         
         taskForGETMethod("", parameters: methodArguments) { data, error in

@@ -27,26 +27,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     @IBOutlet var mapView: MKMapView!
     
     @IBAction func itemTouchUp(sender: AnyObject) {
-//        let result = ARViewController.createCaptureSession()
-//        if result.error != nil
-//        {
-//            let message = result.error?.userInfo["description"] as? String
-//            let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
-//            alertView.show()
-//            return
-//        }
-//
-//        let arViewController = ARViewController()
-//        arViewController.debugEnabled = true
-//        arViewController.dataSource = self
-//        arViewController.maxDistance = 0
-//        arViewController.maxVisibleAnnotations = 100
-//        arViewController.maxVerticalLevel = 5
-//        arViewController.trackingManager.userDistanceFilter = 25
-//        arViewController.trackingManager.reloadDistanceFilter = 75
-//        arViewController.setAnnotations(getAnnotations(self.peaks))
-//        self.presentViewController(arViewController, animated: true, completion: nil)
-        
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MountainsARViewController") as! MountainsARViewController
         controller.peaks = self.peaks
         self.navigationController!.pushViewController(controller, animated: true)
@@ -79,7 +59,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        OSMClient.sharedInstance().getPeaks() { (success, peaks, errorString) in
+        OSMClient.sharedInstance().getPeaks(self.locationManager.location!) { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
                 self.peaks = peaks!
@@ -143,7 +123,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "peak"
         
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
             //pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
@@ -162,8 +142,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
         
         //mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
     }

@@ -68,9 +68,9 @@ class OSMClient : NSObject {
     /* Helper: Given a response with error, see if a status_message is returned, otherwise return the previous error */
     class func errorForData(data: NSData?, response: NSURLResponse?, error: NSError) -> NSError {
         if data != nil {
-            if let parsedResult = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String : AnyObject] {
+            if let _ = (try? NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)) as? [String : AnyObject] {
                 
-                return NSError(domain: "Flickr Error", code: 1, userInfo: [NSLocalizedDescriptionKey : "TBD"])
+                return NSError(domain: "OSM Error", code: 1, userInfo: [NSLocalizedDescriptionKey : "TBD"])
             }
         }
         

@@ -3,10 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "OSMClient.(taskForGETMethod(OSMClient) -&gt; (String, parameters : [String : AnyObject], completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; NSURLSessionDataTask).(closure #1):OSMClient.swift">
+         contextName = "TestAnnotationView.bindUi() -&gt; ():TestAnnotationView.swift">
       </ContextState>
       <ContextState
-         contextName = "TestAnnotationView.bindUi() -&gt; ():TestAnnotationView.swift">
+         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.viewDidLoad() -&gt; ():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchedPeakResultsController.fetchedObjects">
+            </PersistentString>
+            <PersistentString
+               value = "fetchedLocationResultsController.fetchedObjects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OSMClient.(taskForGETMethod(OSMClient) -&gt; (String, parameters : [String : AnyObject], completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; NSURLSessionDataTask).(closure #1):OSMClient.swift">
       </ContextState>
       <ContextState
          contextName = "Peak.init(dictionary : [String : AnyObject], context : NSManagedObjectContext) -&gt; Peak:Peak.swift">
@@ -17,6 +31,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "OSMClient.getPeaks(CLLocation, completionHandler : (success : Bool, peaks : [Peak]?, errorString : String?) -&gt; ()) -&gt; ():OSMConvenience.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "print(&quot;[out:json];node(\(location.coordinate.latitude-OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude-OSMClient.Constants.LOCATION_HALF_HEIGHT),\(location.coordinate.latitude+OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude+OSMClient.Constants.LOCATION_HALF_HEIGHT))[natural=peak];out;&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "OSMClient.(getPeaks(OSMClient) -&gt; (CLLocation, completionHandler : (success : Bool, peaks : [Peak]?, errorString : String?) -&gt; ()) -&gt; ()).(closure #1):OSMConvenience.swift">
+      </ContextState>
+      <ContextState
          contextName = "MountainsARViewController.viewWillAppear(Bool) -&gt; ():MountainsARViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -25,7 +50,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
+         contextName = "MapViewController.viewWillAppear(Bool) -&gt; ():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.peaks">
+            </PersistentString>
+            <PersistentString
+               value = "self.peaks.count">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -13,6 +13,7 @@
 		F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57B1C5CAF5700CE736E /* Peak.swift */; };
 		F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */; };
 		F303C5811C67713E00CE736E /* MountainsARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5801C67713E00CE736E /* MountainsARViewController.swift */; };
+		F35D99231C95A4B2001BB552 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35D99221C95A4B2001BB552 /* Location.swift */; };
 		F38F116A1C73C335000DA415 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F11691C73C335000DA415 /* CoreLocation.framework */; };
 		F38F116C1C73C33E000DA415 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F116B1C73C33E000DA415 /* CoreMotion.framework */; };
 		F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F116F1C73C37E000DA415 /* ARAnnotation.swift */; };
@@ -61,6 +62,7 @@
 		F303C57B1C5CAF5700CE736E /* Peak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peak.swift; sourceTree = "<group>"; };
 		F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		F303C5801C67713E00CE736E /* MountainsARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainsARViewController.swift; sourceTree = "<group>"; };
+		F35D99221C95A4B2001BB552 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F38F11691C73C335000DA415 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F38F116B1C73C33E000DA415 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F38F116F1C73C37E000DA415 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
@@ -129,6 +131,17 @@
 			name = OSM;
 			sourceTree = "<group>";
 		};
+		F35D99211C9579AE001BB552 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				F38F116D1C73C37E000DA415 /* HDAugmentedReality */,
+				F38F116B1C73C33E000DA415 /* CoreMotion.framework */,
+				F38F11691C73C335000DA415 /* CoreLocation.framework */,
+				F3C3AA261C54127000FE7952 /* MapKit.framework */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		F38F116D1C73C37E000DA415 /* HDAugmentedReality */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,10 +186,7 @@
 		F3C3A9E61C540C5B00FE7952 = {
 			isa = PBXGroup;
 			children = (
-				F38F116D1C73C37E000DA415 /* HDAugmentedReality */,
-				F38F116B1C73C33E000DA415 /* CoreMotion.framework */,
-				F38F11691C73C335000DA415 /* CoreLocation.framework */,
-				F3C3AA261C54127000FE7952 /* MapKit.framework */,
+				F35D99211C9579AE001BB552 /* Library */,
 				F3C3A9F11C540C5C00FE7952 /* Mountains */,
 				F3C3AA091C540C5C00FE7952 /* MountainsTests */,
 				F3C3AA141C540C5C00FE7952 /* MountainsUITests */,
@@ -234,6 +244,7 @@
 			children = (
 				F303C5741C54BFDC00CE736E /* OSM */,
 				F303C57B1C5CAF5700CE736E /* Peak.swift */,
+				F35D99221C95A4B2001BB552 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -396,6 +407,7 @@
 				F38F117C1C73C37E000DA415 /* ARAnnotationView.swift in Sources */,
 				F3C3A9FB1C540C5C00FE7952 /* Mountains.xcdatamodeld in Sources */,
 				F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */,
+				F35D99231C95A4B2001BB552 /* Location.swift in Sources */,
 				F303C5811C67713E00CE736E /* MountainsARViewController.swift in Sources */,
 				F303C5781C54C03800CE736E /* OSMConvenience.swift in Sources */,
 				F38F117F1C73C37E000DA415 /* ARViewController.swift in Sources */,

@@ -13,7 +13,8 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, ARDataSource {
     
-    var peaks: [Peak] = []
+    //var peaks: [Peak] = []
+    var location: Location?
     
     // Map region keys for NSUserDefaults
     let MapSavedRegionExists = "map.savedRegionExists"
@@ -28,7 +29,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     
     @IBAction func itemTouchUp(sender: AnyObject) {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MountainsARViewController") as! MountainsARViewController
-        controller.peaks = self.peaks
+        controller.peaks = fetchedPeakResultsController.fetchedObjects as! [Peak]
         self.navigationController!.pushViewController(controller, animated: true)
     }
     
@@ -52,6 +53,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         fetchedPeakResultsController.delegate = self
         
+        // load persisted annotations
+        self.mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
+
+        
         // Load previous map state
         loadPersistedMapViewRegion()
     }
@@ -59,13 +64,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        OSMClient.sharedInstance().getPeaks(self.locationManager.location!) { (success, peaks, errorString) in
-            if (success == true) {
-                print("Finding peaks done!")
-                self.peaks = peaks!
-                self.mapView.addAnnotations(peaks!)
-            } else {
-                print("Finding peaks error!")
+        if let currentLocation = self.locationManager.location {
+            if (fetchedPeakResultsController.fetchedObjects as! [Peak]).count == 0 {
+                OSMClient.sharedInstance().getPeaks(currentLocation) { (success, peaks, errorString) in
+                    if (success == true) {
+                        print("Finding peaks done!")
+                        self.mapView.addAnnotations(peaks!)
+                        self.location = Location(location: currentLocation, peaks: peaks!, context: self.sharedContext)
+                        
+                        for peak in peaks! {
+                            peak.location = self.location
+                        }
+                        
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    } else {
+                        print("Finding peaks error!")
+                    }
+                }
             }
         }
     }
@@ -85,6 +100,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     lazy var fetchedPeakResultsController: NSFetchedResultsController = {
         
         let fetchRequest = NSFetchRequest(entityName: "Peak")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+            managedObjectContext: self.sharedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        return fetchedResultsController
+        
+    }()
+    
+    // lazy fetchedResultsController property
+    lazy var fetchedLocationResultsController: NSFetchedResultsController = {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Location")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,

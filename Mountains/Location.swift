@@ -49,7 +49,10 @@ class Location : NSManagedObject {
     }()
     
     func equal(location: CLLocation) -> Bool {
-        if (location.coordinate.latitude == self.latitude) && (location.coordinate.longitude == self.longitude) {
+        
+        let distance = location.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
+        
+        if (distance < OSMClient.Constants.LOCATION_OFFSET) {
             return true
         } else {
             return false

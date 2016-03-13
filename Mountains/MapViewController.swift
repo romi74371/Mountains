@@ -65,7 +65,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         super.viewWillAppear(animated)
         
         if let currentLocation = self.locationManager.location {
-            if (fetchedPeakResultsController.fetchedObjects as! [Peak]).count == 0 {
+            
+            // If there are no locations stored in memory or current location is different than stored one
+            if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count == 0) || !(fetchedPeakResultsController.fetchedObjects as! [Peak])[0].location!.equal(currentLocation) {
                 OSMClient.sharedInstance().getPeaks(currentLocation) { (success, peaks, errorString) in
                     if (success == true) {
                         print("Finding peaks done!")

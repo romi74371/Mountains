@@ -27,6 +27,8 @@ extension OSMClient {
         static let LOCATION_HALF_WIDTH = 0.05
         static let LOCATION_HALF_HEIGHT = 0.1
         
+        static let LOCATION_OFFSET = 100.0
+        
         //static let EXTRAS = "url_m"
         //static let SAFE_SEARCH = "1"
         //static let DATA_FORMAT = "json"

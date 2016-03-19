@@ -53,12 +53,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         fetchedPeakResultsController.delegate = self
         
-        // load persisted annotations
-        self.mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
-
-        
         // Load previous map state
         loadPersistedMapViewRegion()
+        
+        // load persisted annotations
+        self.mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,28 +67,29 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             
             // If there are no locations stored in memory or current location is different than stored one
             if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count == 0) || !(fetchedPeakResultsController.fetchedObjects as! [Peak])[0].location!.equal(currentLocation) {
-                OSMClient.sharedInstance().getPeaks(currentLocation) { (success, peaks, errorString) in
-                    if (success == true) {
-                        print("Finding peaks done!")
-                        self.mapView.addAnnotations(peaks!)
-                        self.location = Location(location: currentLocation, peaks: peaks!, context: self.sharedContext)
-                        
-                        for peak in peaks! {
-                            peak.location = self.location
-                        }
-                        
-                        CoreDataStackManager.sharedInstance().saveContext()
-                    } else {
-                        print("Finding peaks error!")
-                    }
-                }
+                
+                loadPeaks(currentLocation)
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func loadPeaks(location: CLLocation) {
+        OSMClient.sharedInstance().getPeaks(location) { (success, peaks, errorString) in
+            if (success == true) {
+                print("Finding peaks done!")
+                self.mapView.addAnnotations(peaks!)
+                self.location = Location(location: location, peaks: peaks!, context: self.sharedContext)
+                self.location?.deletePeaks()
+                
+                for peak in peaks! {
+                    peak.location = self.location
+                }
+                
+                CoreDataStackManager.sharedInstance().saveContext()
+            } else {
+                print("Finding peaks error!")
+            }
+        }
     }
     
     // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
@@ -131,13 +131,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     // MARK: - MKMapViewDelegate
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
+        //if control == view.rightCalloutAccessoryView {
             //let controller = self.storyboard!.instantiateViewControllerWithIdentifier("AlbumViewController") as! AlbumViewController
             //let annotation = view.annotation as! Peak
             //controller.pin = annotation
             //self.navigationController!.pushViewController(controller, animated: true)
             
-        }
+        //}
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
@@ -155,13 +155,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "peak"
         
-        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
-            //pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            //pinView!.canShowCallout = true
-            //pinView!.draggable = true
-            //pinView!.pinTintColor = MKPinAnnotationView.greenPinColor()
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.draggable = false
+            pinView!.pinTintColor = MKPinAnnotationView.greenPinColor()
             //pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
         }
         else {
@@ -174,8 +174,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        
+        let currentLocation = manager.location!
+        if (self.location?.equal(currentLocation) == false ) {
+            loadPeaks(currentLocation)
+        }
         
         //mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
     }

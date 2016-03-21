@@ -26,11 +26,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBAction func itemTouchUp(sender: AnyObject) {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MountainsARViewController") as! MountainsARViewController
-        controller.peaks = (location?.peaks)!
-        self.navigationController!.pushViewController(controller, animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,21 +113,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     lazy var fetchedPeakResultsController: NSFetchedResultsController = {
         
         let fetchRequest = NSFetchRequest(entityName: "Peak")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-            managedObjectContext: self.sharedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        
-        return fetchedResultsController
-        
-    }()
-    
-    // lazy fetchedResultsController property
-    lazy var fetchedLocationResultsController: NSFetchedResultsController = {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Location")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,

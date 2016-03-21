@@ -14,6 +14,8 @@
 		F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */; };
 		F303C5811C67713E00CE736E /* MountainsARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F303C5801C67713E00CE736E /* MountainsARViewController.swift */; };
 		F35D99231C95A4B2001BB552 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35D99221C95A4B2001BB552 /* Location.swift */; };
+		F3827BE61CA0ADB100FDEC41 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BE51CA0ADB100FDEC41 /* TabBarController.swift */; };
+		F3827BE81CA0B05900FDEC41 /* PeakListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3827BE71CA0B05900FDEC41 /* PeakListViewController.swift */; };
 		F38F116A1C73C335000DA415 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F11691C73C335000DA415 /* CoreLocation.framework */; };
 		F38F116C1C73C33E000DA415 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38F116B1C73C33E000DA415 /* CoreMotion.framework */; };
 		F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38F116F1C73C37E000DA415 /* ARAnnotation.swift */; };
@@ -63,6 +65,8 @@
 		F303C57E1C5CB07D00CE736E /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		F303C5801C67713E00CE736E /* MountainsARViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainsARViewController.swift; sourceTree = "<group>"; };
 		F35D99221C95A4B2001BB552 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		F3827BE51CA0ADB100FDEC41 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F3827BE71CA0B05900FDEC41 /* PeakListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakListViewController.swift; sourceTree = "<group>"; };
 		F38F11691C73C335000DA415 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F38F116B1C73C33E000DA415 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F38F116F1C73C37E000DA415 /* ARAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARAnnotation.swift; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 			children = (
 				F3C3A9F41C540C5C00FE7952 /* MapViewController.swift */,
 				F303C5801C67713E00CE736E /* MountainsARViewController.swift */,
+				F3827BE51CA0ADB100FDEC41 /* TabBarController.swift */,
+				F3827BE71CA0B05900FDEC41 /* PeakListViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -405,6 +411,7 @@
 				F303C5761C54C00200CE736E /* OSMClient.swift in Sources */,
 				F303C57F1C5CB07D00CE736E /* CoreDataStackManager.swift in Sources */,
 				F38F117C1C73C37E000DA415 /* ARAnnotationView.swift in Sources */,
+				F3827BE61CA0ADB100FDEC41 /* TabBarController.swift in Sources */,
 				F3C3A9FB1C540C5C00FE7952 /* Mountains.xcdatamodeld in Sources */,
 				F38F117B1C73C37E000DA415 /* ARAnnotation.swift in Sources */,
 				F35D99231C95A4B2001BB552 /* Location.swift in Sources */,
@@ -414,6 +421,7 @@
 				F38F117D1C73C37E000DA415 /* ARConfiguration.swift in Sources */,
 				F38F11861C7453D0000DA415 /* MountainsAnnotationView.swift in Sources */,
 				F303C57C1C5CAF5700CE736E /* Peak.swift in Sources */,
+				F3827BE81CA0B05900FDEC41 /* PeakListViewController.swift in Sources */,
 				F3C3A9F51C540C5C00FE7952 /* MapViewController.swift in Sources */,
 				F3C3A9F31C540C5C00FE7952 /* AppDelegate.swift in Sources */,
 				F303C57A1C54C08000CE736E /* OSMConstant.swift in Sources */,

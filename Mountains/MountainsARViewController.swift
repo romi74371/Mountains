@@ -10,12 +10,18 @@ import UIKit
 import CoreLocation
 import CoreData
 
-class MountainsARViewController: ARViewController, ARDataSource {
+class MountainsARViewController: ARViewController, ARDataSource,  NSFetchedResultsControllerDelegate {
     
-    var peaks: [Peak] = []
+    //var peaks: [Peak] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            try fetchedPeakResultsController.performFetch()
+        } catch {}
+        
+        fetchedPeakResultsController.delegate = self
         
     }
     
@@ -38,8 +44,29 @@ class MountainsARViewController: ARViewController, ARDataSource {
         self.maxVerticalLevel = 5
         self.trackingManager.userDistanceFilter = 25
         self.trackingManager.reloadDistanceFilter = 75
-        self.setAnnotations(getAnnotations(self.peaks))
+        self.setAnnotations(getAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak]))
     }
+    
+    // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    
+    // lazy fetchedResultsController property
+    lazy var fetchedPeakResultsController: NSFetchedResultsController = {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Peak")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+            managedObjectContext: self.sharedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        return fetchedResultsController
+        
+    }()
     
     // MARK: ARDataSource
     

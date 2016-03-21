@@ -96,6 +96,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
                 })
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alertController = UIAlertController(title: "Alert", message:
+                        errorString, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                })
             }
         }
     }

@@ -6,7 +6,12 @@
          contextName = "TestAnnotationView.bindUi() -&gt; ():TestAnnotationView.swift">
       </ContextState>
       <ContextState
-         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
+         contextName = "MapViewController.locationManager(CLLocationManager, didUpdateLocations : [CLLocation]) -&gt; ():MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.location">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "MapViewController.viewDidLoad() -&gt; ():MapViewController.swift">
@@ -18,6 +23,9 @@
                value = "fetchedLocationResultsController.fetchedObjects">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static OSMClient.parseJSONWithCompletionHandler(NSData, completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; ():OSMClient.swift">
       </ContextState>
       <ContextState
          contextName = "OSMClient.(taskForGETMethod(OSMClient) -&gt; (String, parameters : [String : AnyObject], completionHandler : (result : AnyObject!, error : NSError?) -&gt; ()) -&gt; NSURLSessionDataTask).(closure #1):OSMClient.swift">

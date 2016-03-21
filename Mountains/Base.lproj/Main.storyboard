@@ -1,32 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqg-jR-S1p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqg-jR-S1p">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Map View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="L1D-U3-8RT">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Mountains" customModuleProvider="target" sceneMemberID="viewController">
-                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="1dS-x7-VZu">
+                <viewController id="YCb-uD-Z5m" userLabel="Map View Controller" customClass="MapViewController" customModule="Mountains" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jnl-Qq-DLB"/>
+                        <viewControllerLayoutGuide type="bottom" id="GR7-2M-opx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bn6-cX-9mg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </mapView>
-                    <navigationItem key="navigationItem" id="dMT-Du-J5V">
-                        <barButtonItem key="rightBarButtonItem" title="ARView" id="I8d-hU-C3o">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WXN-ve-LnL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iGm-1A-6xn">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WXN-ve-LnL" firstAttribute="top" secondItem="Bn6-cX-9mg" secondAttribute="topMargin" id="2y1-3W-6I2"/>
+                            <constraint firstItem="GR7-2M-opx" firstAttribute="top" secondItem="WXN-ve-LnL" secondAttribute="bottom" id="JHF-9v-bxM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WXN-ve-LnL" secondAttribute="trailing" constant="-20" id="VgO-36-K9b"/>
+                            <constraint firstItem="iGm-1A-6xn" firstAttribute="centerY" secondItem="WXN-ve-LnL" secondAttribute="centerY" id="oLG-UB-Azc"/>
+                            <constraint firstItem="iGm-1A-6xn" firstAttribute="centerX" secondItem="WXN-ve-LnL" secondAttribute="centerX" id="oO4-xP-ICp"/>
+                            <constraint firstItem="WXN-ve-LnL" firstAttribute="leading" secondItem="Bn6-cX-9mg" secondAttribute="leadingMargin" constant="-20" id="ubW-jB-G2m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="1fh-cE-AM2">
+                        <barButtonItem key="rightBarButtonItem" title="ARView" id="sp4-eP-lik">
                             <connections>
-                                <action selector="itemTouchUp:" destination="BYZ-38-t0r" id="UWT-RK-MXO"/>
+                                <action selector="itemTouchUp:" destination="YCb-uD-Z5m" id="s1d-Ne-xSo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="1dS-x7-VZu" id="gE3-gR-uXW"/>
+                        <outlet property="activityIndicator" destination="iGm-1A-6xn" id="DXh-6n-wsw"/>
+                        <outlet property="mapView" destination="WXN-ve-LnL" id="Ng4-B5-ZmY"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7A6-00-ans" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="891" y="597"/>
+            <point key="canvasLocation" x="869" y="597"/>
         </scene>
         <!--AR View Controller-->
         <scene sceneID="VGJ-6k-ft3">
@@ -55,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Cd7-Yg-o4w"/>
+                        <segue destination="YCb-uD-Z5m" kind="relationship" relationship="rootViewController" id="Wz4-f0-2g4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10Q-O1-WCI" userLabel="First Responder" sceneMemberID="firstResponder"/>

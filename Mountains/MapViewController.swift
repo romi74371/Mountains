@@ -13,7 +13,6 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, ARDataSource {
     
-    //var peaks: [Peak] = []
     var location: Location?
     
     // Map region keys for NSUserDefaults
@@ -26,10 +25,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     var locationManager: CLLocationManager!
 
     @IBOutlet var mapView: MKMapView!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBAction func itemTouchUp(sender: AnyObject) {
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("MountainsARViewController") as! MountainsARViewController
-        controller.peaks = fetchedPeakResultsController.fetchedObjects as! [Peak]
+        controller.peaks = (location?.peaks)!
         self.navigationController!.pushViewController(controller, animated: true)
     }
     
@@ -47,6 +46,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         self.mapView.mapType = MKMapType(rawValue: 0)!
         self.mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
+        activityIndicator.hidden = true
+        
         do {
             try fetchedPeakResultsController.performFetch()
         } catch {}
@@ -58,22 +59,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         // load persisted annotations
         self.mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
+        
+        // if location is persisted, load loacation
+        if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count > 0) {
+            location = (fetchedPeakResultsController.fetchedObjects as! [Peak])[0].location
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let currentLocation = self.locationManager.location {
-            
-            // If there are no locations stored in memory or current location is different than stored one
-            if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count == 0) || !(fetchedPeakResultsController.fetchedObjects as! [Peak])[0].location!.equal(currentLocation) {
-                
-                loadPeaks(currentLocation)
-            }
-        }
     }
     
     private func loadPeaks(location: CLLocation) {
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
         OSMClient.sharedInstance().getPeaks(location) { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
@@ -86,8 +86,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 }
                 
                 CoreDataStackManager.sharedInstance().saveContext()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                })
             } else {
                 print("Finding peaks error!")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                })
             }
         }
     }
@@ -174,11 +182,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     // MARK: CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
         
         let currentLocation = manager.location!
-        if (self.location?.equal(currentLocation) == false ) {
+        if (location == nil) || (location?.equal(currentLocation) == false ) {
+            location = Location(location: currentLocation, peaks: [], context: self.sharedContext)
             loadPeaks(currentLocation)
         }
         

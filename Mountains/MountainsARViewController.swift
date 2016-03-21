@@ -32,8 +32,13 @@ class MountainsARViewController: ARViewController, ARDataSource,  NSFetchedResul
         if result.error != nil
         {
             let message = result.error?.userInfo["description"] as? String
-            let alertView = UIAlertView(title: "Error", message: message, delegate: nil, cancelButtonTitle: "Close")
-            alertView.show()
+            dispatch_async(dispatch_get_main_queue(), {
+                let alertController = UIAlertController(title: "Error", message:
+                    message, preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+            })
             return
         }
         

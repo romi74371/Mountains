@@ -30,16 +30,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.startUpdatingLocation()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
-        self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
-        self.mapView.mapType = MKMapType(rawValue: 0)!
-        self.mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.mapType = MKMapType(rawValue: 0)!
+        mapView.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
         activityIndicator.hidden = true
         
@@ -53,7 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         loadPersistedMapViewRegion()
         
         // load persisted annotations
-        self.mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
+        mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
         
         // if location is persisted, load loacation
         if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count > 0) {

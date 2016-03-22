@@ -24,6 +24,8 @@ extension OSMClient {
         
         // arguments for OSM client to download peaks in particular area
         let methodArguments = [
+            //37,865105 / -119,540518
+            //49,235611 / 18,727111
             //"data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
             "data": "[out:json];node(\(location.coordinate.latitude-OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude-OSMClient.Constants.LOCATION_HALF_HEIGHT),\(location.coordinate.latitude+OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude+OSMClient.Constants.LOCATION_HALF_HEIGHT))[natural=peak];out;"
         ]

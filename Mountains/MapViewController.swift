@@ -13,8 +13,6 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, ARDataSource {
     
-    var location: Location?
-    
     // Map region keys for NSUserDefaults
     let MapSavedRegionExists = "map.savedRegionExists"
     let MapCenterLatitudeKey = "map.center.latitude"
@@ -23,6 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
     let MapSpanLongitudeDeltaKey = "map.span.longitudeDelta"
     
     var locationManager: CLLocationManager!
+    var location: Location?
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -65,22 +64,34 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         super.viewWillAppear(animated)
     }
     
-    private func loadPeaks(location: CLLocation) {
+    private func loadPeaks(currentLocation: CLLocation) {
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
         
-        OSMClient.sharedInstance().getPeaks(location) { (success, peaks, errorString) in
+        OSMClient.sharedInstance().getPeaks(currentLocation) { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
-                self.mapView.addAnnotations(peaks!)
-                self.location = Location(location: location, peaks: peaks!, context: self.sharedContext)
-                self.location?.deletePeaks()
+                
+                // if previous location has peaks remove them
+//                if (previousLocation != nil) {
+//                    if (previousLocation!.peaks?.count > 0) {
+//                    }
+//                    self.location?.changeLocation(currentLocation, peaks: peaks!)
+//                } else {
+//                    self.location = Location(location: currentLocation, peaks: peaks!, context: self.sharedContext)
+//                    
+//                    for peak in peaks! {
+//                        peak.location = self.location
+//                    }
+//                }
                 
                 for peak in peaks! {
                     peak.location = self.location
                 }
-                
+                    
                 CoreDataStackManager.sharedInstance().saveContext()
+                self.mapView.addAnnotations(peaks!)
+                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidden = true
@@ -175,7 +186,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         let currentLocation = manager.location!
         if (location == nil) || (location?.equal(currentLocation) == false ) {
-            location = Location(location: currentLocation, peaks: [], context: self.sharedContext)
+            if (location == nil) {
+                location = Location(location: currentLocation, peaks: [], context: self.sharedContext)
+            } else {
+                location?.changeLocation(currentLocation, peaks: [])
+            }
             loadPeaks(currentLocation)
         }
         

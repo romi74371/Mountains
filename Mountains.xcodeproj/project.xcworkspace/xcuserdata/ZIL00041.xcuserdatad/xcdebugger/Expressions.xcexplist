@@ -22,6 +22,9 @@
             <PersistentString
                value = "fetchedLocationResultsController.fetchedObjects">
             </PersistentString>
+            <PersistentString
+               value = "location">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -65,6 +68,14 @@
             </PersistentString>
             <PersistentString
                value = "self.peaks.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MapViewController.((loadPeaks in _B5F4DD64E3C3BF004717478E34143097)(MapViewController) -&gt; (CLLocation) -&gt; ()).(closure #1):MapViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.location?.peaks?.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

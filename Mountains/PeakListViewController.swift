@@ -28,6 +28,8 @@ class PeakListViewController: UITableViewController, NSFetchedResultsControllerD
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.peakListTableView?.reloadData();
     }
     
     // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.

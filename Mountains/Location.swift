@@ -48,6 +48,13 @@ class Location : NSManagedObject {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
     
+    func changeLocation(location: CLLocation, peaks: [Peak]) {
+        deletePeaks()
+        
+        self.latitude = location.coordinate.latitude
+        self.longitude = location.coordinate.longitude
+    }
+    
     func equal(location: CLLocation) -> Bool {
         
         let distance = location.distanceFromLocation(CLLocation(latitude: self.latitude, longitude: self.longitude))
@@ -61,12 +68,12 @@ class Location : NSManagedObject {
     
     // Delete all location's peaks
     func deletePeaks() {
+        print("Deleting peaks")
         if let peaks = self.peaks {
             for peak in peaks {
                 deletePeak(peak)
             }
         }
-        //pendingDownloads = Int(FlickrClient.Constants.PER_PAGE)
     }
     
     // Delete one location peak

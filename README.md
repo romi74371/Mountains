@@ -1,8 +1,9 @@
 ## Mountains
 
 Application "Mountains" is used to visualize the mountains (peaks) in current location.
-There are two types of views to show current location
+There are following types of views to show peaks in current location
 - on the map
+- in the list
 - in the augmented reality
 
 ## How does it work
@@ -12,9 +13,11 @@ The current location is used to load peaks from the open street map (OSM). Numbe
 Loaded peaks are shown on the map. User has possibility to display the peaks in the augmented reality by pressing ARView button located in the top right corner.
 
 ## Features
-- Peaks - Peaks are loaded from the Open Street Map (OSM) server. Data are exchanged in JSON format.
+- Peaks - Peaks are loaded from the Open Street Map (OSM) server. Data are exchanged in JSON format. The area which is used for downloading peaks is current lattitude +/- 0.05 and longitude +/- 0.1 (This numbers are hard coded in application as constants). To test it out following page can be used: http://overpass-turbo.eu with following query: node(49.15,18.67,49.26,18.85)[natural=peak];out;  
 - Persistence - Loaded peaks are persisted in the device. When application will start up at first are peaks loaded from the device. If current location is different from persisted one than the peaks are loaded from the OSM server. For persistence is used CoreData framework.
 - Location service - For location service is used CoreLocation framework
+- Change of current location - If the device is moved 100m from current location, then the peaks are reloaded from server
+- Map or List view - loaded peaks are displayed either on map view or list view. Particullar view can be choosen on tab bar on the botton of the screen.
 - Augmented Reality - For augmented reality is used external library provided by Danijel Huis and can be located here https://github.com/DanijelHuis/HDAugmentedReality.git
 
 ## Requirements

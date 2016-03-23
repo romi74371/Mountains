@@ -51,67 +51,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         // Load previous map state
         loadPersistedMapViewRegion()
         
-        // load persisted annotations
-        mapView.addAnnotations(fetchedPeakResultsController.fetchedObjects as! [Peak])
-        
         // if location is persisted, load loacation
         if ((fetchedPeakResultsController.fetchedObjects as! [Peak]).count > 0) {
             location = (fetchedPeakResultsController.fetchedObjects as! [Peak])[0].location
+            MountainsService.setPeaksForLocation(fetchedPeakResultsController.fetchedObjects as! [Peak])
         }
+        
+        self.redraw()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    private func loadPeaks(currentLocation: CLLocation) {
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
-        
-        OSMClient.sharedInstance().getPeaks(currentLocation) { (success, peaks, errorString) in
-            if (success == true) {
-                print("Finding peaks done!")
-                
-                // if previous location has peaks remove them
-//                if (previousLocation != nil) {
-//                    if (previousLocation!.peaks?.count > 0) {
-//                    }
-//                    self.location?.changeLocation(currentLocation, peaks: peaks!)
-//                } else {
-//                    self.location = Location(location: currentLocation, peaks: peaks!, context: self.sharedContext)
-//                    
-//                    for peak in peaks! {
-//                        peak.location = self.location
-//                    }
-//                }
-                
-                for peak in peaks! {
-                    peak.location = self.location
-                }
-                    
-                CoreDataStackManager.sharedInstance().saveContext()
-                self.mapView.addAnnotations(peaks!)
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.hidden = true
-                })
-            } else {
-                print("Finding peaks error!")
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.hidden = true
-                })
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    let alertController = UIAlertController(title: "Alert", message:
-                        errorString, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-                    
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                })
-            }
-        }
     }
     
     // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
@@ -186,17 +136,43 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
         
         let currentLocation = manager.location!
         if (location == nil) || (location?.equal(currentLocation) == false ) {
+            activityIndicator.hidden = false
+            activityIndicator.startAnimating()
+            
             if (location == nil) {
                 location = Location(location: currentLocation, peaks: [], context: self.sharedContext)
             } else {
                 location?.changeLocation(currentLocation, peaks: [])
             }
-            loadPeaks(currentLocation)
-        }
+            
+            mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
-        //mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+            MountainsService.updatePeaksForLocation(location!, success: { (result) -> Void in
+                if (result == true) {
+                    self.redraw();
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let alertController = UIAlertController(title: "Alert", message:
+                            "Error loading peaks!", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    })
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidden = true
+                })
+            })
+        }
     }
     
+
+    private func redraw() {
+        mapView.addAnnotations(MountainsService.getPeaks()!)
+    }
+
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         mapView.showsUserLocation = (status == .AuthorizedAlways)
     }

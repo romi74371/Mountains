@@ -48,6 +48,10 @@ class Location : NSManagedObject {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
     
+    func getLocation() -> CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
     func changeLocation(location: CLLocation, peaks: [Peak]) {
         deletePeaks()
         

@@ -7,22 +7,18 @@
 //
 
 import UIKit
-import CoreData
 
-class PeakListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class PeakListViewController: UITableViewController {
     
     @IBOutlet weak var peakListTableView: UITableView!
+    private var peaks = [Peak]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         peakListTableView?.delegate = self;
         
-        do {
-            try fetchedPeakResultsController.performFetch()
-        } catch {}
-        
-        fetchedPeakResultsController.delegate = self
+        self.peaks = MountainsService.getPeaks()!
 
     }
     
@@ -32,37 +28,16 @@ class PeakListViewController: UITableViewController, NSFetchedResultsControllerD
         self.peakListTableView?.reloadData();
     }
     
-    // MARK: - Core Data Convenience. This will be useful for fetching. And for adding and saving objects as well.
-    
-    var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }
-    
-    // lazy fetchedResultsController property
-    lazy var fetchedPeakResultsController: NSFetchedResultsController = {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Peak")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true)]
-        
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-            managedObjectContext: self.sharedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil)
-        
-        return fetchedResultsController
-        
-    }()
-    
     // MARK: - UITableViewDelegate and UITableViewDataSource
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellReuseIdentifier = "PeakListTableViewCell"
         
-        let peak = (fetchedPeakResultsController.fetchedObjects as! [Peak])[indexPath.row]
+        let peak = self.peaks[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier)
         
         /* Set cell defaults */
-        cell!.textLabel!.text = "\(peak.name) \(peak.elevation!) m"
+        cell!.textLabel!.text = "\(peak.name)"
         cell!.imageView!.image = UIImage(named: "pinIco")
         cell!.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
         
@@ -70,7 +45,7 @@ class PeakListViewController: UITableViewController, NSFetchedResultsControllerD
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (fetchedPeakResultsController.fetchedObjects as! [Peak]).count
+        return self.peaks.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

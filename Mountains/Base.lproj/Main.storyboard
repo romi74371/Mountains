@@ -24,12 +24,21 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iGm-1A-6xn">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-0.089999999999999997" maxValue="0.089999999999999997" translatesAutoresizingMaskIntoConstraints="NO" id="rK9-Eo-38N">
+                                <rect key="frame" x="241" y="495" width="118" height="31"/>
+                                <connections>
+                                    <action selector="sliderTouchUpInside:" destination="YCb-uD-Z5m" eventType="touchUpInside" id="L7z-ZJ-GT6"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WXN-ve-LnL" firstAttribute="top" secondItem="Bn6-cX-9mg" secondAttribute="topMargin" id="2y1-3W-6I2"/>
                             <constraint firstItem="GR7-2M-opx" firstAttribute="top" secondItem="WXN-ve-LnL" secondAttribute="bottom" id="JHF-9v-bxM"/>
+                            <constraint firstItem="rK9-Eo-38N" firstAttribute="leading" secondItem="Bn6-cX-9mg" secondAttribute="leadingMargin" constant="20" id="Lld-XK-LR1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WXN-ve-LnL" secondAttribute="trailing" constant="-20" id="VgO-36-K9b"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rK9-Eo-38N" secondAttribute="trailing" constant="20" id="W0j-hV-42i"/>
+                            <constraint firstItem="GR7-2M-opx" firstAttribute="top" secondItem="rK9-Eo-38N" secondAttribute="bottom" constant="20" id="ZEM-2n-1Jf"/>
                             <constraint firstItem="iGm-1A-6xn" firstAttribute="centerY" secondItem="WXN-ve-LnL" secondAttribute="centerY" id="oLG-UB-Azc"/>
                             <constraint firstItem="iGm-1A-6xn" firstAttribute="centerX" secondItem="WXN-ve-LnL" secondAttribute="centerX" id="oO4-xP-ICp"/>
                             <constraint firstItem="WXN-ve-LnL" firstAttribute="leading" secondItem="Bn6-cX-9mg" secondAttribute="leadingMargin" constant="-20" id="ubW-jB-G2m"/>
@@ -40,6 +49,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="iGm-1A-6xn" id="DXh-6n-wsw"/>
                         <outlet property="mapView" destination="WXN-ve-LnL" id="Ng4-B5-ZmY"/>
+                        <outlet property="slider" destination="rK9-Eo-38N" id="Hbx-RI-gvM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7A6-00-ans" userLabel="First Responder" sceneMemberID="firstResponder"/>

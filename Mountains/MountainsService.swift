@@ -22,8 +22,8 @@ class MountainsService {
     
     private var peaks:[Peak] = []
     
-    private func updatePeaksForLocation(location: Location, success_callback: (result: Bool) -> Void) {
-        OSMClient.sharedInstance().getPeaks(location.getLocation()) { (success, peaks, errorString) in
+    private func updatePeaksForLocation(location: Location, offset: Float, success_callback: (result: Bool) -> Void) {
+        OSMClient.sharedInstance().getPeaks(location.getLocation(), offset: offset) { (success, peaks, errorString) in
             if (success == true) {
                 print("Finding peaks done!")
                 
@@ -45,8 +45,8 @@ class MountainsService {
         return MountainsService.sharedInstance().peaks
     }
     
-    class func updatePeaksForLocation(location: Location, success: (result: Bool) -> Void) {
-        MountainsService.sharedInstance().updatePeaksForLocation(location, success_callback:success)
+    class func updatePeaksForLocation(location: Location, offset: Float, success: (result: Bool) -> Void) {
+        MountainsService.sharedInstance().updatePeaksForLocation(location, offset: offset, success_callback:success)
     }
     
     class func setPeaksForLocation(peaks: [Peak]) {

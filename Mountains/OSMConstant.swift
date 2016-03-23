@@ -24,7 +24,7 @@ extension OSMClient {
         static let LON_MIN = -180.0
         static let LON_MAX = 180.0
         
-        static let LOCATION_HALF_WIDTH = 0.05
+        static let LOCATION_HALF_WIDTH = 0.1
         static let LOCATION_HALF_HEIGHT = 0.1
         
         static let LOCATION_OFFSET = 100.0

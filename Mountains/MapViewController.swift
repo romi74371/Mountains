@@ -25,13 +25,42 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var slider: UISlider!
+    
+    @IBAction func sliderTouchUpInside(sender: UISlider) {
+        print(sender.value)
+        
+        activityIndicator.hidden = false
+        activityIndicator.startAnimating()
+        
+        MountainsService.updatePeaksForLocation(location!, offset: slider.value, success: { (result) -> Void in
+            if (result == true) {
+                self.redraw();
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alertController = UIAlertController(title: "Alert", message:
+                        "Error loading peaks!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                })
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+            })
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
@@ -147,7 +176,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             
             mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
         
-            MountainsService.updatePeaksForLocation(location!, success: { (result) -> Void in
+            MountainsService.updatePeaksForLocation(location!, offset: slider.value, success: { (result) -> Void in
                 if (result == true) {
                     self.redraw();
                 } else {
@@ -167,10 +196,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
             })
         }
     }
-    
 
     private func redraw() {
-        mapView.addAnnotations(MountainsService.getPeaks()!)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            
+            self.mapView.addAnnotations(MountainsService.getPeaks()!)
+        })
     }
 
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

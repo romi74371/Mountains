@@ -20,14 +20,17 @@ extension OSMClient {
     
     // MARK: - GET Convenience Methods
     
-    func getPeaks(location: CLLocation, completionHandler: (success: Bool, peaks: [Peak]?, errorString: String?) -> Void) {
+    func getPeaks(location: CLLocation, offset: Float, completionHandler: (success: Bool, peaks: [Peak]?, errorString: String?) -> Void) {
+        
+        let widthPlusOffset = OSMClient.Constants.LOCATION_HALF_WIDTH + Double(offset)
+        let heighPlusOffset = OSMClient.Constants.LOCATION_HALF_HEIGHT + Double(offset)
         
         // arguments for OSM client to download peaks in particular area
+        //37,865105 / -119,540518
+        //49,235611 / 18,727111
+        //"data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
         let methodArguments = [
-            //37,865105 / -119,540518
-            //49,235611 / 18,727111
-            //"data": "[out:json];node(49.15,18.67,49.26,18.85)[natural=peak];out;"
-            "data": "[out:json];node(\(location.coordinate.latitude-OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude-OSMClient.Constants.LOCATION_HALF_HEIGHT),\(location.coordinate.latitude+OSMClient.Constants.LOCATION_HALF_WIDTH),\(location.coordinate.longitude+OSMClient.Constants.LOCATION_HALF_HEIGHT))[natural=peak];out;"
+            "data": "[out:json];node(\(location.coordinate.latitude-widthPlusOffset),\(location.coordinate.longitude-heighPlusOffset),\(location.coordinate.latitude+widthPlusOffset),\(location.coordinate.longitude+heighPlusOffset))[natural=peak];out;"
         ]
         
         taskForGETMethod("", parameters: methodArguments) { data, error in

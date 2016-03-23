@@ -18,6 +18,7 @@ Loaded peaks are shown on the map. User has possibility to display the peaks in 
 - Location service - For location service is used CoreLocation framework
 - Change of current location - If the device is moved 100m from current location, then the peaks are reloaded from server
 - Map or List view - loaded peaks are displayed either on map view or list view. Particullar view can be choosen on tab bar on the botton of the screen.
+- Slider functionality - there is slider located on the map view. Slider add offset to the search area. Offset can be setup from -0.09 to 0.09 value. 
 - Augmented Reality - For augmented reality is used external library provided by Danijel Huis and can be located here https://github.com/DanijelHuis/HDAugmentedReality.git
 
 ## Requirements

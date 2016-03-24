@@ -174,7 +174,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, NSFetchedResultsCo
                 location?.changeLocation(currentLocation, peaks: [])
             }
             
-            mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)), animated: true)
+            let zoomWidth = (OSMClient.Constants.LOCATION_HALF_WIDTH + Double(slider.value)) * 2
+            let zoomHeigh = (OSMClient.Constants.LOCATION_HALF_HEIGHT + Double(slider.value)) * 2
+            
+            mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(locValue.latitude, locValue.longitude), MKCoordinateSpan(latitudeDelta: zoomWidth, longitudeDelta: zoomHeigh)), animated: true)
         
             MountainsService.updatePeaksForLocation(location!, offset: slider.value, success: { (result) -> Void in
                 if (result == true) {

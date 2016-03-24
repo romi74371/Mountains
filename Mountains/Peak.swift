@@ -45,7 +45,12 @@ class Peak : NSManagedObject, MKAnnotation {
         
         latitude = dictionary[Keys.Latitude] as! Double
         longitude = dictionary[Keys.Longitude] as! Double
-        name = dictionary[Keys.Tags]![Keys.Name] as! String
+        if let tags = dictionary[Keys.Tags] as? [String: AnyObject] {
+            if let name = tags[Keys.Name] as? String {
+                self.name = name
+            }
+        }
+        //name = dictionary[Keys.Tags]![Keys.Name] as! String
         if let ele = (dictionary[Keys.Tags]![Keys.Elevation] as? String) {
             self.elevation = Int(ele)
         }

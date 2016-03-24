@@ -78,7 +78,19 @@
          contextName = "Peak.init(dictionary : [String : AnyObject], context : NSManagedObjectContext) -&gt; Peak:Peak.swift">
          <PersistentStrings>
             <PersistentString
+               value = "dictionary[Keys.Tags] as! String">
+            </PersistentString>
+            <PersistentString
+               value = "dictionary[Keys.Tags]">
+            </PersistentString>
+            <PersistentString
+               value = "dictionary[Keys.Tags]![Keys.Name] as! String">
+            </PersistentString>
+            <PersistentString
                value = "dictionary[Keys.Tags]![Keys.Elevation]">
+            </PersistentString>
+            <PersistentString
+               value = "dictionary[Keys.Tags]![Keys.Name]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
